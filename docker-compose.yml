@@ -1,0 +1,38 @@
+ 
+services:
+ 
+  consul:
+    container_name: consul
+    image: consul:1.15.4
+    command: agent -server -ui -node=server1 -bootstrap-expect=1 -client=0.0.0.0
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    networks:
+      - consul-demo
+ 
+  consulclient:
+    build:
+      context: consulclient
+      dockerfile: Dockerfile
+    ports:
+      - "8098:8098"
+    depends_on:
+      - consul
+    networks:
+      - consul-demo
+ 
+  consulserver:
+    build:
+      context: consulserver
+      dockerfile: Dockerfile
+    ports:
+      - "9098:9098"
+    depends_on:
+      - consul
+    networks:
+      - consul-demo
+ 
+networks:
+  consul-demo:
+    driver: bridge
