@@ -1,0 +1,1 @@
+# nw-consul-discovery
