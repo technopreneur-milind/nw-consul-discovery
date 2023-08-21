@@ -1,0 +1,1 @@
+docker run -p 8500:8500 consul:1.15.4 agent -server -ui -node=server1 -bootstrap-expect=1 -client=0.0.0.0
