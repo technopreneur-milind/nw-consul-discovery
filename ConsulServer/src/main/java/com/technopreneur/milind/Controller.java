@@ -11,7 +11,7 @@ public class Controller {
 
 	@GetMapping("/{key}")
 	public String getValue(@PathVariable String key) {
-
+		System.out.println("Server1 is hit");
 		return key.toUpperCase();
 	}
 
